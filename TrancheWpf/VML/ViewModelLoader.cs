@@ -1,8 +1,7 @@
-﻿
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using TrancheWpf.Models;
 
 namespace TrancheWpf.VML
     {
@@ -34,7 +33,7 @@ namespace TrancheWpf.VML
                 var viewModelTypeName = viewTypeName + "Model";
                 var viewModelType = Type.GetType(viewModelTypeName);
                 if (viewModelType == null) return;
-                var viewModel = Activator.CreateInstance(viewModelType);
+                var viewModel = Activator.CreateInstance(viewModelType, Event.EventInstance.EventAggregator);
                 ((FrameworkElement)d).DataContext = viewModel;
             }
         }

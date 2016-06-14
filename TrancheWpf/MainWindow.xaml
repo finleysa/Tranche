@@ -6,19 +6,10 @@
         xmlns:local="clr-namespace:TrancheWpf"
         xmlns:views="clr-namespace:TrancheWpf.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="600">
-    
-    <Grid Width="600" Height="480">
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
-        <views:TargetsView x:Name = "TargetsViewControl" Margin="0,0,214,0" HorizontalAlignment="Left"/>
+        Title="MainWindow" Height="600" Width="800" Background="#FF1F405B">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <views:TargetsView x:Name = "TargetsViewControl" HorizontalAlignment="Left" Width="316" Foreground="#FF423131"/>
+        <views:TargetMediaView x:Name="TargetMediaView" Margin="321,0,10,0" />
     </Grid>
 </Window>

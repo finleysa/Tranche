@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace TrancheWpf.Models
 {
@@ -6,17 +7,20 @@ namespace TrancheWpf.Models
 
     public class Target : INotifyPropertyChanged
     {
-        private string alias;
-        private int id;
+        #region Fields
+        private string _alias;
+        private int _id;
+        #endregion
 
+        #region Properties
         public string Alias
         {
-            get { return alias; }
+            get { return _alias; }
             set
             {
-                if (alias != value)
+                if (_alias != value)
                 {
-                    alias = value;
+                    _alias = value;
                     RaisePropertyChanged("Alias");
                 }
             }
@@ -24,9 +28,11 @@ namespace TrancheWpf.Models
 
         public int ID
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
+
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

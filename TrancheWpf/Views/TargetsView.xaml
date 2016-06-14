@@ -6,26 +6,34 @@
              xmlns:local="clr-namespace:TrancheWpf.Views"
              xmlns:vml1="clr-namespace:TrancheWpf.VML"
              xmlns:data="clr-namespace:TrancheWpf.Models"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              vml1:ViewModelLocator.AutoHookedUpViewModel = "True" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" Width="250" BorderThickness="0,0,1,0">
     <UserControl.Resources>
         <DataTemplate DataType = "{x:Type data:Target}">
-
-            <StackPanel Orientation = "Horizontal">
-                <TextBox Text = "{Binding Path = Alias, Mode = TwoWay}" 
-               Width = "100" Margin = "3 5 3 5"/>
+            <StackPanel Orientation = "Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                 <TextBlock Text = "{Binding Path = Alias, Mode = OneWay}" 
                Margin = "0 5 3 5"/>
-
+                
             </StackPanel>
 
         </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
-        <ListBox 
-         ItemsSource = "{Binding Targets}" />
+        <StackPanel Orientation="Horizontal">
+            <ListBox 
+        		ItemsSource="{Binding Targets}"
+        		SelectedItem="{Binding SelectedTarget}"/>
+            <!--
+            <Button Content="Delete"
+                    Command="{Binding DeleteCommand}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Width="75"/>
+    -->
+        </StackPanel>
     </Grid>
 </UserControl>

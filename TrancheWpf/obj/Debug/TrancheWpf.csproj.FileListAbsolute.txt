@@ -16,3 +16,17 @@ c:\users\tweek\documents\visual studio 2015\Projects\TrancheWpf\TrancheWpf\obj\D
 c:\users\tweek\documents\visual studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\TrancheWpf.exe
 c:\users\tweek\documents\visual studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\TrancheWpf.pdb
 c:\users\tweek\documents\visual studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\users\tweek\documents\visual studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\TrancheWpf.csprojResolveAssemblyReference.cache
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\TargetMediaView.g.cs
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\TargetMediaView.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Prism.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\Prism.xml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\App.baml
