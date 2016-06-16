@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using EventAggregator;
 using TrancheWpf.Annotations;
 using TrancheWpf.DatabaseManager;
@@ -16,12 +11,13 @@ using IEventAggregator = EventAggregator.IEventAggregator;
 
 namespace TrancheWpf.ViewModels
 {
-    public class TargetMediaViewModel : INotifyPropertyChanged, ISubscriber<TargetSelected>
+    public class TargetMediaViewModel : INotifyPropertyChanged, ISubscriber<TargetSelected>, ISubscriber<ShowAllMedia>
     {
         private const string PgConnectString =
-            "Host=localhost;Username=postgres;Password=password;Database=RoadRunner";
+            @"Host=localhost;Username=postgres;Password=password;Database=RoadRunner";
+
         private const string TargetsQuery =
-            @"select t_intercepted_com.id as target_id, t_intercepted_target.alias, t_sms.content, t_com_media.direction from t_sms
+            @"select t_intercepted_com.id as target_id, t_intercepted_target.alias, t_sms.content, t_com_media.direction, t_com_media.start_time, t_com_media.end_time from t_sms
             join t_com_media
             on t_com_media.id_com_media = t_sms.id_com_media
             join t_intercepted_com
@@ -29,8 +25,25 @@ namespace TrancheWpf.ViewModels
             join t_intercepted_target
             on t_intercepted_target.id = t_intercepted_com.id";
 
+        private const string AllMediaQuery =
+            @"select t_sms.content, t_com_media.direction, t_com_media.start_time, t_com_media.end_time from t_sms
+            join t_com_media
+            on t_com_media.id_com_media = t_sms.id_com_media";
+
         private readonly IEventAggregator _iEventAggregator;
-        public IEnumerable<TargetMedia> DisplayedMediaData { get; set; }
+        private IEnumerable<TargetMedia> _displayedMediaData;
+
+        public IEnumerable<TargetMedia> DisplayedMediaData
+        {
+            get { return _displayedMediaData; }
+            set
+            {
+                if (value == null) return;
+                _displayedMediaData = value;
+                OnPropertyChanged(nameof(DisplayedMediaData));
+            }
+        }
+
         public IEnumerable<TargetMedia> InternalMediaData { get; set; }
         private TargetMedia _selectedMedia;
 
@@ -63,8 +76,21 @@ namespace TrancheWpf.ViewModels
 
         public void OnEventHandler(TargetSelected e)
         {
-            DisplayedMediaData = from data in InternalMediaData where data.target_id == e.Target.ID select data;
-            OnPropertyChanged(nameof(DisplayedMediaData));
+            DisplayedMediaData = from data in InternalMediaData where data.target_id == e.Target.ID orderby data.start_time select data;
+        }
+
+        public void OnEventHandler(ShowAllMedia e)
+        {
+            GetAllMedia(e.Show);
+        }
+
+        private void GetAllMedia(bool show)
+        {
+            if (show)
+            {
+                var temp = DBManager.Instance.ExecuteSqlQueryAllMedia(PgConnectString, AllMediaQuery);
+                DisplayedMediaData = temp.OrderBy(x => x.start_time);
+            }
         }
     }
 }

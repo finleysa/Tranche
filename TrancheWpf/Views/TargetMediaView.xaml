@@ -12,16 +12,29 @@
     
     <UserControl.Resources>
         <DataTemplate DataType = "{x:Type data:TargetMedia}">
-
-            <TextBlock Height="Auto" Width="Auto" Text = "{Binding Path = content, Mode = OneWay}" TextWrapping="WrapWithOverflow" 
-                Margin = "0 5 3 5" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Height="Auto" Width="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-        <ListBox ItemsSource="{Binding DisplayedMediaData, Mode = OneWay}"
+    <Grid ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <DataGrid
+                 LoadingRow="MrGriddy_LoadingRow"
+                 x:Name="MrGriddy"
+                 ItemsSource="{Binding DisplayedMediaData, Mode = OneWay}"
                  SelectedItem="{Binding SelectedMedia}"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Alias" Binding="{Binding alias}"/>
+                <DataGridTextColumn Header="Content" Binding="{Binding content}" Width="300"/>
+                <DataGridTextColumn Header="Direction" Binding="{Binding direction}"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding start_time}"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding end_time}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </UserControl>

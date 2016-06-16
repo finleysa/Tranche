@@ -21,7 +21,18 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="Show All Media"
+                    Command="{Binding ShowAllMediaCommand}"
+                    Height="40"
+                    Grid.Row="0"
+                    HorizontalAlignment="Stretch"/>
+       
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
             <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto"
         		ItemsSource="{Binding Targets}"
         		SelectedItem="{Binding SelectedTarget}"

@@ -24,5 +24,10 @@ namespace TrancheWpf.Views
         {
             InitializeComponent();
         }
+
+        private void MrGriddy_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex()).ToString();
+        }
     }
 }

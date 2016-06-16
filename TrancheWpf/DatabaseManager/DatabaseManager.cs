@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using Npgsql;
 using TrancheWpf.Models;
 
@@ -73,7 +73,9 @@ namespace TrancheWpf.DatabaseManager
                                 target_id = reader.GetInt16(0),
                                 alias = reader.GetString(1),
                                 content = reader.GetString(2),
-                                direction = reader.GetInt16(3)
+                                direction = reader.GetInt16(3),
+                                start_time = reader.GetDateTime(4),
+                                end_time = reader.GetDateTime(5)
                             };
 
                             if (string.IsNullOrEmpty(tm.content))
@@ -87,6 +89,44 @@ namespace TrancheWpf.DatabaseManager
                 }
             }
         }
+
+        public ObservableCollection<TargetMedia> ExecuteSqlQueryAllMedia(string connectionString, string query)
+        {
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = query;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var targets = new ObservableCollection<TargetMedia>();
+                        while (reader.Read())
+                        {
+                            var tm = new TargetMedia
+                            {
+                                content = reader.GetString(0),
+                                direction = reader.GetInt16(1),
+                                start_time = reader.GetDateTime(2),
+                                end_time = reader.GetDateTime(3)
+                            };
+
+                            if (string.IsNullOrEmpty(tm.content))
+                            {
+                                tm.content = @"{{{ NOT INTERCEPTED }}}";
+                            }
+                            targets.Add(tm);
+                        }
+                        return targets;
+                    }
+                }
+            }
+
+
+        }
+
 
     }
 }

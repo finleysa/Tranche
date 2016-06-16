@@ -34,3 +34,13 @@ C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\D
 C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\TrancheWpf.csprojResolveAssemblyReference.cache
 C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\TargetMediaDetailView.g.cs
 C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\TargetMediaDetailView.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\MenuBarView.g.cs
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Views\MenuBarView.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\BureauBlack.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\BureauBlue.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\ExpressionDark.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\ExpressionLight.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\ShinyBlue.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\ShinyRed.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\obj\Debug\Themes\WhistlerBlue.baml
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\TrancheWpf\bin\Debug\DataGridThemes.dll

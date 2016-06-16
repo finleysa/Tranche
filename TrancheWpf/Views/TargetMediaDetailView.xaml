@@ -8,13 +8,13 @@
              vml:ViewModelLocator.AutoHookedUpViewModel = "True"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding SelectedMedia}">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding SelectedMedia}" Background="#FFD2C6C6">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding Path = alias}" FontSize="36" FontWeight="Bold" TextDecorations="Underline" />
+        <TextBlock Grid.Row="0" Text="{Binding Path = alias}" FontSize="24" FontWeight="Bold" TextDecorations="Underline" />
         <TextBlock Grid.Row="1" Text="{Binding Path = content}" TextWrapping="WrapWithOverflow" />
     </Grid>
 </UserControl>

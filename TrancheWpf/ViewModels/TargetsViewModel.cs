@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
 using TrancheWpf.Annotations;
 using TrancheWpf.DatabaseManager;
 using TrancheWpf.Events;
@@ -26,19 +20,29 @@ namespace TrancheWpf.ViewModels
 
 
         public MyICommand DeleteCommand { get; set; }
+        public MyICommand ShowAllMediaCommand { get; set; }
+        public ObservableCollection<Target> Targets { get; set; }
+
 
         public TargetsViewModel(IEventAggregator iEventAggregator)
         {
             this._iEventAggregator = iEventAggregator;
             Targets = DBManager.Instance.ExecuteSqlQueryTarget(PgConnectString, TargetsQuery);
+            ShowAllMediaCommand = new MyICommand(OnShow, CanShow);
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
         }
 
-        public ObservableCollection<Target> Targets
+        private bool CanShow()
         {
-            get;
-            set;
+            return true;
         }
+
+        private void OnShow()
+        {
+            this._iEventAggregator.PublishEvent(new ShowAllMedia { Show = true });
+        }
+
+        public ObservableCollection<Target> Target { get; set; }
 
         public Target SelectedTarget
         {
