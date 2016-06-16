@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using Prism.Events;
 using TrancheWpf.Annotations;
 using TrancheWpf.DatabaseManager;
+using TrancheWpf.Events;
 using TrancheWpf.Models;
+using IEventAggregator = EventAggregator.IEventAggregator;
 
 namespace TrancheWpf.ViewModels
 {
@@ -20,12 +22,15 @@ namespace TrancheWpf.ViewModels
         private const string TargetsQuery =
             "Select * FROM t_intercepted_target";
         private Target _selectedTarget;
+        private readonly IEventAggregator _iEventAggregator;
+
+
         public MyICommand DeleteCommand { get; set; }
 
         public TargetsViewModel(IEventAggregator iEventAggregator)
         {
-            this.iEventAggregator = iEventAggregator;
-            Targets = DBManager.Instance.ExecuteSqlQuery(PgConnectString, TargetsQuery);
+            this._iEventAggregator = iEventAggregator;
+            Targets = DBManager.Instance.ExecuteSqlQueryTarget(PgConnectString, TargetsQuery);
             DeleteCommand = new MyICommand(OnDelete, CanDelete);
         }
 
@@ -45,9 +50,7 @@ namespace TrancheWpf.ViewModels
                     _selectedTarget = value;
                     OnPropertyChanged("SelectedTarget");
                     DeleteCommand.RaiseCanExecuteChanged();
-                    this.iEventAggregator
-                        .GetEvent<PubSubEvent<Target>>()
-                        .Publish(this.SelectedTarget);
+                    this._iEventAggregator.PublishEvent(new TargetSelected {Target = value});
                 }
             }
         }
@@ -62,7 +65,6 @@ namespace TrancheWpf.ViewModels
             return SelectedTarget != null;
         }
 
-        private IEventAggregator iEventAggregator;
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

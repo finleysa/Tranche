@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
+﻿using EventAggregator;
 
 namespace TrancheWpf.Models
 {
@@ -29,7 +24,7 @@ namespace TrancheWpf.Models
                 {
                     if (eventAggregator == null)
                     {
-                        eventAggregator = new EventAggregator();
+                        eventAggregator = new EventAggregator.EventAggregator();
                     }
 
                     return eventAggregator;

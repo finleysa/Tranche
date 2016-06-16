@@ -82,13 +82,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
+    <Compile Include="Events\MediaSelected.cs" />
+    <Compile Include="Events\TargetSelected.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\TargetMedia.cs" />
-    <Compile Include="Models\TCom.cs" />
     <Compile Include="MyICommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\TargetMediaDetailViewModel.cs" />
     <Compile Include="ViewModels\TargetMediaViewModel.cs" />
     <Compile Include="ViewModels\TargetsViewModel.cs" />
+    <Compile Include="Views\TargetMediaDetailView.xaml.cs">
+      <DependentUpon>TargetMediaDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TargetMediaView.xaml.cs">
       <DependentUpon>TargetMediaView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +113,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TargetMediaDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TargetMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +155,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EventAggregator\EventAggregator.csproj">
+      <Project>{67c79308-1a85-44fe-a8bf-01ca7d808df9}</Project>
+      <Name>EventAggregator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

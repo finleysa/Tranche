@@ -1,74 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Practices.Prism.Commands;
-using Prism.Events;
+using EventAggregator;
+using TrancheWpf.Annotations;
 using TrancheWpf.DatabaseManager;
+using TrancheWpf.Events;
 using TrancheWpf.Models;
+using IEventAggregator = EventAggregator.IEventAggregator;
 
 namespace TrancheWpf.ViewModels
 {
-    public class TargetMediaViewModel
+    public class TargetMediaViewModel : INotifyPropertyChanged, ISubscriber<TargetSelected>
     {
         private const string PgConnectString =
             "Host=localhost;Username=postgres;Password=password;Database=RoadRunner";
         private const string TargetsQuery =
-            "Select * FROM t_sms";
+            @"select t_intercepted_com.id as target_id, t_intercepted_target.alias, t_sms.content, t_com_media.direction from t_sms
+            join t_com_media
+            on t_com_media.id_com_media = t_sms.id_com_media
+            join t_intercepted_com
+            on t_intercepted_com.id_com = t_com_media.id_com
+            join t_intercepted_target
+            on t_intercepted_target.id = t_intercepted_com.id";
 
         private readonly IEventAggregator _iEventAggregator;
-        private Target _selectedTarget;
-        public ICommand Subscribe { get; set; }
-        public IEnumerable<TargetMedia> TargetMediaData { get; set; }
         public IEnumerable<TargetMedia> DisplayedMediaData { get; set; }
+        public IEnumerable<TargetMedia> InternalMediaData { get; set; }
+        private TargetMedia _selectedMedia;
 
-        public Target SelectedTarget
-        {
-            get { return _selectedTarget; }
+        public TargetMedia SelectedMedia {
+            get { return _selectedMedia; }
             set
             {
-                if (_selectedTarget != value)
-                {
-                    _selectedTarget = value;
-                    if (value != null)
-                    {
-                        DisplayedMediaData = from data in TargetMediaData where data.ID == value.ID select data;
-                    }
-                }
+                _selectedMedia = value;
+                OnPropertyChanged(nameof(value));
+                this._iEventAggregator.PublishEvent(new MediaSelected { TargetMedia = value });
             }
         }
 
         public TargetMediaViewModel(IEventAggregator iEventAggregator)
         {
-            TargetMediaData = DBManager.Instance.ExecuteSqlQuerySms(PgConnectString, TargetsQuery);
-            this._iEventAggregator = iEventAggregator;
-            SubscriptionToken subscriptionToken =
-                this
-                    ._iEventAggregator
-                    .GetEvent<PubSubEvent<Target>>()
-                    .Subscribe((details) => { this._selectedTarget = details; });
+            InternalMediaData = DBManager.Instance.ExecuteSqlQueryMedia(PgConnectString, TargetsQuery);
+            DisplayedMediaData = InternalMediaData;
 
-            this.Subscribe = new DelegateCommand(
-            () =>
-            {
-                subscriptionToken =
-                    this
-                        ._iEventAggregator
-                        .GetEvent<PubSubEvent<Target>>()
-                        .Subscribe((details) =>
-                        {
-                            this.SelectedTarget = details;
-                        });
-            });
+            this._iEventAggregator = iEventAggregator;
+            this._iEventAggregator.SubsribeEvent(this);
         }
 
-        private void GetSms(int id)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            //TargetMediaData = DBManager.Instance.ExecuteSqlQuerySms(PgConnectString, TargetsQuery);
-            //Console.WriteLine(_targetMediaData[0].Sms + " " + _targetMediaData[0].Encoding + " " + _targetMediaData[0].ID);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void OnEventHandler(TargetSelected e)
+        {
+            DisplayedMediaData = from data in InternalMediaData where data.target_id == e.Target.ID select data;
+            OnPropertyChanged(nameof(DisplayedMediaData));
         }
     }
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrancheWpf", "TrancheWpf\TrancheWpf.csproj", "{509EADB9-DC38-46C6-BF25-3941D1B727F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventAggregator", "EventAggregator\EventAggregator.csproj", "{67C79308-1A85-44FE-A8BF-01CA7D808DF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{509EADB9-DC38-46C6-BF25-3941D1B727F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509EADB9-DC38-46C6-BF25-3941D1B727F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509EADB9-DC38-46C6-BF25-3941D1B727F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C79308-1A85-44FE-A8BF-01CA7D808DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C79308-1A85-44FE-A8BF-01CA7D808DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C79308-1A85-44FE-A8BF-01CA7D808DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C79308-1A85-44FE-A8BF-01CA7D808DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

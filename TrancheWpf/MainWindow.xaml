@@ -9,7 +9,28 @@
         Title="MainWindow" Height="600" Width="800" Background="#FF1F405B">
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <views:TargetsView x:Name = "TargetsViewControl" HorizontalAlignment="Left" Width="316" Foreground="#FF423131"/>
-        <views:TargetMediaView x:Name="TargetMediaView" Margin="321,0,10,0" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <views:TargetsView x:Name = "TargetsViewControl" HorizontalAlignment="Stretch" Foreground="#FF423131" Grid.Column="0"
+            Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>
+        <GridSplitter Grid.Column="1" Width="5"  HorizontalAlignment="Stretch"></GridSplitter>
+        <Grid Grid.Column="2" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <views:TargetMediaView Grid.Row="0" x:Name="TargetMediaView"
+                Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>
+            
+            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
+            
+            <views:TargetMediaDetailView Grid.Row="2" x:Name="TargetMediaDetailView" HorizontalAlignment="Stretch"
+                Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"/>
+        </Grid>
     </Grid>
 </Window>

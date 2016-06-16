@@ -9,25 +9,19 @@
              mc:Ignorable="d" 
              vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
     <UserControl.Resources>
         <DataTemplate DataType = "{x:Type data:TargetMedia}">
-            <StackPanel Orientation = "Horizontal" HorizontalAlignment="Right">
 
-                <TextBlock Text = "{Binding Path = ID, Mode = OneWay}" 
-               Margin = "0 5 3 5"/>
-
-            </StackPanel>
+            <TextBlock Height="Auto" Width="Auto" Text = "{Binding Path = content, Mode = OneWay}" TextWrapping="WrapWithOverflow" 
+                Margin = "0 5 3 5" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
 
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <StackPanel Orientation="Horizontal">
-            <ListBox 
-                ItemsSource="{Binding DisplayedMediaData, Mode = TwoWay}"/>
-            
-        </StackPanel>
-        <Button Content="Sub" Command="{Binding Subscribe}" Height="50" Width="75" VerticalAlignment="Bottom"/>
-
+    <Grid Height="Auto" Width="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListBox ItemsSource="{Binding DisplayedMediaData, Mode = OneWay}"
+                 SelectedItem="{Binding SelectedMedia}"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </UserControl>

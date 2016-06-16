@@ -1,0 +1,5 @@
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\EventAggregator\bin\Debug\EventAggregator.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\EventAggregator\bin\Debug\EventAggregator.pdb
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\EventAggregator\obj\Debug\EventAggregator.dll
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\EventAggregator\obj\Debug\EventAggregator.pdb
+C:\Users\Tweek\Documents\Visual Studio 2015\Projects\TrancheWpf\EventAggregator\obj\Debug\EventAggregator.csprojResolveAssemblyReference.cache
